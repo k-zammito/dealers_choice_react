@@ -3,6 +3,15 @@ import axios from "axios";
 import Character from "./Character";
 import Nav from "./Nav";
 
+const EachChar = ({ character, removeChar, idx }) => {
+    return (
+        <li>
+            { character }
+            <button onClick={ ()=> removeChar(idx) }>-</button>
+        </li>
+    );
+}
+
 class App extends Component {
     constructor() {
         super()
@@ -10,6 +19,12 @@ class App extends Component {
             chars: [],
             selectedCharId: ''
         }
+        this.removeChar = this.removeChar.bind(this)
+    }
+    removeChar(idx) {
+        const chars = this.state.chars.filter((_, _idx)=> _idx !== idx);
+        this.setState({ chars })
+        // console.log(chars)
     }
     async componentDidMount() {
         const chars = (await axios.get('/api/characters')).data
@@ -21,15 +36,18 @@ class App extends Component {
     }
     render() {
         const { chars, selectedCharId } = this.state
+        const { removeChar } = this;
+        
         return (
             <div>
                 <Nav />
                 <div>
                 <ul>
                     {
-                        chars.map ( char => {
+                        chars.map( (char, idx) => {
                             return (
                                 <li className={'list'}key={char.id}>
+                                    <EachChar idx= { idx } removeChar={ removeChar } key={idx} />
                                     <a href={`#${char.id}`}>
                                     { char.name }
                                     </a>
