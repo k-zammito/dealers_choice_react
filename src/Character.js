@@ -22,7 +22,7 @@ class Character extends Component {
     render() {
         const { character } = this.state
         return (
-            <div>
+            <div >
                <p>{ character.bio }</p>
             </div>
         );

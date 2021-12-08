@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Character from "./Character";
+import Nav from "./Nav";
 
 class App extends Component {
     constructor() {
@@ -22,13 +23,13 @@ class App extends Component {
         const { chars, selectedCharId } = this.state
         return (
             <div>
-                <h1>LOTR Characters</h1>
+                <Nav />
                 <div>
                 <ul>
                     {
                         chars.map ( char => {
                             return (
-                                <li className={ selectedCharId === char.id ? 'selected' : ''}key={char.id}>
+                                <li className={'list'}key={char.id}>
                                     <a href={`#${char.id}`}>
                                     { char.name }
                                     </a>
