@@ -5,10 +5,10 @@ import Nav from "./Nav";
 
 const EachChar = ({ character, removeChar, idx }) => {
     return (
-        <li>
+        <div>
             { character }
             <button onClick={ ()=> removeChar(idx) }>-</button>
-        </li>
+        </div>
     );
 }
 

@@ -11,13 +11,12 @@ class Character extends Component {
     async componentDidUpdate(prevProps) {
         if(prevProps.selectedCharId !== this.props.selectedCharId) {
             const character = (await axios.get(`/api/characters/${this.props.selectedCharId}`)).data;
-        this.setState({ character })
+            this.setState({ character })
         }
     }
     async componentDidMount() {
         const character = (await axios.get(`/api/characters/${this.props.selectedCharId}`)).data;
         this.setState({ character })
-        console.log(character.description.bio)
     }
     render() {
         const { character } = this.state
